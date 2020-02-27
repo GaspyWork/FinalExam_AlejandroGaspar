@@ -6,7 +6,7 @@ using System.Web;
 
 namespace InternationalBusinessMen.Models.BDModels
 {
-    public class TransacionModelBD : IAccion
+    public class TransacionModelBD 
     {
         [Key]
         public int Id { get; set; }

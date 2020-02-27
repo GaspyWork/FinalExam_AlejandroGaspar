@@ -10,6 +10,6 @@ namespace InternationalBusinessMen.Services.Converter
 {
     public interface IConverterConversion
     {
-        List<ConversionModelBD> ConvertTo(List<ConversionModel> lista);
+         Task<List<ConversionModelBD>> ConvertToBdModel(List<ConversionModel> lista);
     }
 }

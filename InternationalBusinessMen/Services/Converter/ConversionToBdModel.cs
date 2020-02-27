@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using InternationalBusinessMen.Models.BDModels;
 using InternationalBusinessMen.Models.WebModels;
@@ -11,30 +12,22 @@ namespace InternationalBusinessMen.Services.Converter
 {
     public class ConversionToBdModel : IConverterConversion
     {
-        //private ConversionFactory _accionConversion;
+        private readonly IConversionFactory _Conversionfactory;
 
-        //public ConversionToBdModel(ConversionFactory accionConversion)
-        //{
-        //    _accionConversion = accionConversion;
-        //}
+        public ConversionToBdModel(IConversionFactory conversionfactory)
+        {
+            _Conversionfactory = conversionfactory;
+        }
 
-        public List<ConversionModelBD> ConvertTo(List<ConversionModel> lista)
+        public async Task<List<ConversionModelBD>> ConvertToBdModel(List<ConversionModel> lista)
         {
             try
             {
                 List<ConversionModelBD> listaResult = new List<ConversionModelBD>();
-                ConversionModelBD conversionobj;
 
                 foreach (var item in lista)
                 {
-                    conversionobj = new ConversionModelBD()
-                    {
-                        from = item.from,
-                        to = item.to,
-                        rate = Convert.ToDouble(item.rate)
-                    };
-
-                    listaResult.Add(conversionobj);
+                    listaResult.Add(await _Conversionfactory.CreateInstance(item).ConfigureAwait(false));
                 }
                 return listaResult;
             }

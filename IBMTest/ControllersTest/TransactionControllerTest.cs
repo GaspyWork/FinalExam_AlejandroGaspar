@@ -20,7 +20,7 @@ namespace IBMTest.ControllersTest
         [Test]
         public async void GetAllConversionesTest()
         {
-            var res = await controller.GetAllTransaciones();
+            var res = await controller.RecogerTodasTransaciones();
             Assert.IsNotNull(res);
         }
     }

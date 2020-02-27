@@ -39,9 +39,15 @@ namespace InternationalBusinessMen.Services.GetDataFromDB
             return result;
         }
 
-        public string GettransacionBySKU()
+        public List<TransacionModelBD> GettransacionBySKU(string sku)
         {
-            throw new NotImplementedException();
+            var listado = (from transacion in _dbContext.Transaciones
+                           where transacion.currency == sku
+                           select transacion).ToList();
+
+            return listado;
         }
+
+
     }
 }

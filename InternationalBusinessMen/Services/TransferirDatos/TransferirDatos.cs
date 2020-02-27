@@ -18,7 +18,7 @@ namespace InternationalBusinessMen.Services.TransferirDatos
 {
     public class TransferirDatos : ITransferirDatos
     {
-        private readonly IWebAPIRepository _repoWebApi;
+        private readonly IWebAPIGetData _repoWebApi;
         private readonly IDeserializer _JsonConvert;
         private readonly IDeserializer _jsonTransacion;
         private readonly IConverterConversion _converterConversion;
@@ -30,7 +30,7 @@ namespace InternationalBusinessMen.Services.TransferirDatos
 
         public TransferirDatos(
 
-            IWebAPIRepository repoWebApi, 
+            IWebAPIGetData repoWebApi, 
             IDeserializer JsonConvert,
             IDeserializer jsonTransacion, 
             IConverterConversion converterConversion,
@@ -73,8 +73,9 @@ namespace InternationalBusinessMen.Services.TransferirDatos
             {
                 var ConversionesData = await Task.Run(() => _repoWebApi.DescargarDatos("http://quiet-stone-2094.herokuapp.com/rates.json"));
                 var listaConversion = _JsonConvert.ConvertTo<ConversionModel>(ConversionesData);
-                var listaBdModelConversion = _converterConversion.ConvertTo(listaConversion);
-                await _conversionRepository.MeterRegistros(listaBdModelConversion);
+                var listaBdModelConversion = _converterConversion.ConvertToBdModel(listaConversion);
+
+                await _conversionRepository.MeterRegistros(listaBdModelConversion.Result);
                 _conversionRepository.Save();
             }
             catch (Exception ex)
@@ -90,8 +91,8 @@ namespace InternationalBusinessMen.Services.TransferirDatos
             {
                 var TransacionesData = await Task.Run(() => _repoWebApi.DescargarDatos("http://quiet-stone-2094.herokuapp.com/transactions.json"));
                 var listaTransacion = _jsonTransacion.ConvertTo<TransacionModel>(TransacionesData);
-                var listaBdModelTransacion = _converterTransacion.ConvertTo(listaTransacion);
-                await _transacionRepository.MeterRegistros(listaBdModelTransacion);
+                var listaBdModelTransacion = _converterTransacion.ConvertToBdModel(listaTransacion);
+                await _transacionRepository.MeterRegistros(listaBdModelTransacion.Result);
                 _transacionRepository.Save();
 
             }

@@ -14,11 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="FactoryTest\" />
-    <Folder Include="ServicesTest\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\InternationalBusinessMen\InternationalBusinessMen.csproj" />
   </ItemGroup>
 

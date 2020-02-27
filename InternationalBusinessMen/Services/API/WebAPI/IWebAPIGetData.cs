@@ -2,7 +2,7 @@
 
 namespace InternationalBusinessMen.Services.API.WebAPI
 {
-    public interface IWebAPIRepository
+    public interface IWebAPIGetData
     {
          Task<string> DescargarDatos(string ruta);
     }

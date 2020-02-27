@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InternationalBusinessMen.Models.BDModels;
 using InternationalBusinessMen.Models.WebModels;
 
-namespace InternationalBusinessMen.Services.Converter
+namespace InternationalBusinessMen.Services.Factory
 {
-    public interface IConverterTransacion
+    public interface IConversionFactory
     {
-        Task<List<TransacionModelBD>> ConvertToBdModel(List<TransacionModel> lista);
+        Task<ConversionModelBD> CreateInstance(ConversionModel transacion);
     }
 }

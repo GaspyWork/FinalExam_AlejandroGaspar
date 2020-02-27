@@ -161,6 +161,7 @@
     <Compile Include="Models\BDModels\TransacionModelBD.cs" />
     <Compile Include="Models\WebModels\ConversionModel.cs" />
     <Compile Include="Models\BDModels\ConversionModelBD.cs" />
+    <Compile Include="Models\WebModels\IModelAccion.cs" />
     <Compile Include="Models\WebModels\TransacionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CheckConexionService\CheckConexion.cs" />
@@ -178,7 +179,8 @@
     <Compile Include="Services\Excepciones\ErrorTransferirConversionesException.cs" />
     <Compile Include="Services\Excepciones\NullException.cs" />
     <Compile Include="Services\Factory\ConversionFactory.cs" />
-    <Compile Include="Services\Factory\IAccionFactory.cs" />
+    <Compile Include="Services\Factory\IConversionFactory.cs" />
+    <Compile Include="Services\Factory\ITransacionFactory.cs" />
     <Compile Include="Services\Factory\TransactionFactory.cs" />
     <Compile Include="Services\FakeRepository\FakeRepository.cs" />
     <Compile Include="Services\FakeRepository\IFakeRepository.cs" />

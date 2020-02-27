@@ -1,32 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using InternationalBusinessMen.Models.BDModels;
+using InternationalBusinessMen.Models.WebModels;
+using InternationalBusinessMen.Services.Excepciones;
+using InternationalBusinessMen.Services.Specification;
 
 namespace InternationalBusinessMen.Services.Factory
 {
-    public class ConversionFactory : IAccionFactory<ConversionModelBD>
+    public class ConversionFactory : IConversionFactory
     {
-        public IAccion CreateInstance()
-        {
-            IAccion accion = new ConversionModelBD()
-            {
+        private ISpecification _specificationNull;
 
-            };
-            return accion;
+        public ConversionFactory(ISpecification specificationNull)
+        {
+            _specificationNull = specificationNull;
         }
 
-        public IAccion CreateInstance(ConversionModelBD obj)
+        public async Task<ConversionModelBD> CreateInstance(ConversionModel conversion)
         {
-            IAccion accion = new ConversionModelBD()
+            try
             {
-                from = obj.from,
-                to = obj.to,
-                rate = obj.rate
-            };
+                if (_specificationNull.IsSatisfiedBy(conversion))
+                {
+                    return await Task.Run(() => new ConversionModelBD()
+                    {
+                        from = conversion.from,
+                        to = conversion.to,
+                        rate = Convert.ToDouble(conversion.rate)
 
-            return accion;
+                    });
+                }
+                throw new NullException("La conversion no es correcta");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+           
         }
     }
 }

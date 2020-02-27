@@ -58,7 +58,7 @@ namespace InternationalBusinessMen.Services.GenericRepository
 
         public async void RemoveTable()
         {
-            await Task.Run(() => table.RemoveRange(table));
+            await Task.Run(() => table.RemoveRange(table)).ConfigureAwait(false);
         }
 
         public void Save()

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InternationalBusinessMen.Models.BDModels;
+﻿using InternationalBusinessMen.Models.WebModels;
 
-namespace InternationalBusinessMen.Specification
+namespace InternationalBusinessMen.Services.Specification
 {
     public interface ISpecification
     {
-        bool IsSatisfiedBy(IAccion obj);
+        bool IsSatisfiedBy(IModelAccion obj);
     }
 }

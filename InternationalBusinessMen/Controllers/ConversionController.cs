@@ -34,7 +34,7 @@ namespace InternationalBusinessMen.Controllers
         }
 
         // GET: ConversionModelBDs
-        public async Task<ActionResult> GetAllData()
+        public async Task<ActionResult> RecogerTodosDatos()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace InternationalBusinessMen.Controllers
             }
         }
 
-        public async Task<ActionResult> GetAllConversiones()
+        public async Task<ActionResult> RecogerTodasConversiones()
         {
             try
             {

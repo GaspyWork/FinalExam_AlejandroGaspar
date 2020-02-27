@@ -7,11 +7,11 @@ using InternationalBusinessMen.Services.Excepciones;
 
 namespace InternationalBusinessMen.Services.API.WebAPI
 {
-    public class WebAPIRepository : IWebAPIRepository
+    public class WebAPIGetData : IWebAPIGetData
     {
         HttpClient _client;
 
-        public WebAPIRepository(HttpClient client)
+        public WebAPIGetData(HttpClient client)
         {
             _client = client;
         }

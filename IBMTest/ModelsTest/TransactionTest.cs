@@ -6,14 +6,14 @@ using NUnit.Framework;
 
 namespace IBMTest.ModelsTest
 {
-    public class ConversionTest
+    class TransactionTest
     {
-        private ConversionModelBD model;
+        private TransacionModelBD model;
 
         [Test]
         public void Create()
         {
-            model = new ConversionModelBD();
+            model = new TransacionModelBD();
             Assert.IsNotNull(model);
         }
     }

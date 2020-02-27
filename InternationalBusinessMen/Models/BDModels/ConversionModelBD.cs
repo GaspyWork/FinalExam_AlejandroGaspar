@@ -2,7 +2,7 @@
 
 namespace InternationalBusinessMen.Models.BDModels
 {
-    public class ConversionModelBD : IAccion
+    public class ConversionModelBD 
     {
         [Key]
         public int Id { get; set; }

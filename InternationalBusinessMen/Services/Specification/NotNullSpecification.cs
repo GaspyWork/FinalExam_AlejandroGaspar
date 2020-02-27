@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using InternationalBusinessMen.Models.BDModels;
-using InternationalBusinessMen.Services.Excepciones;
+﻿using InternationalBusinessMen.Models.WebModels;
 
-namespace InternationalBusinessMen.Specification
+namespace InternationalBusinessMen.Services.Specification
 {
     public class NotNullSpecification : ISpecification
     {
-        public bool IsSatisfiedBy(IAccion obj)
+        public bool IsSatisfiedBy(IModelAccion obj)
         {
             if (obj == null)
             {

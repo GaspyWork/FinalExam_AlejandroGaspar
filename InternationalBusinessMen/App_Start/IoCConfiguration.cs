@@ -9,9 +9,11 @@ using InternationalBusinessMen.Services.API.WebAPI;
 using InternationalBusinessMen.Services.CheckConexionService;
 using InternationalBusinessMen.Services.Converter;
 using InternationalBusinessMen.Services.Deserializer;
+using InternationalBusinessMen.Services.Factory;
 using InternationalBusinessMen.Services.GenericRepository;
 using InternationalBusinessMen.Services.GetDataFromDB;
 using InternationalBusinessMen.Services.Log;
+using InternationalBusinessMen.Services.Specification;
 using InternationalBusinessMen.Services.TransferirDatos;
 
 namespace InternationalBusinessMen
@@ -32,8 +34,8 @@ namespace InternationalBusinessMen
             builder.RegisterType<TransferirDatos>()
                 .As<ITransferirDatos>().InstancePerRequest();
 
-            builder.RegisterType<WebAPIRepository>()
-                .As<IWebAPIRepository>().InstancePerRequest();
+            builder.RegisterType<WebAPIGetData>()
+                .As<IWebAPIGetData>().InstancePerRequest();
 
             builder.RegisterType<DeserializerConversionJson>()
                 .As<IDeserializer>().InstancePerRequest();
@@ -58,12 +60,27 @@ namespace InternationalBusinessMen
 
             builder.RegisterType<Data>()
                 .As<IData>().InstancePerRequest();
+
+            builder.RegisterType<ConversionFactory>()
+                .As<IConversionFactory>().InstancePerRequest();
+
+            builder.RegisterType<TransactionFactory>()
+                .As<ITransacionFactory>().InstancePerRequest();
+
+            builder.RegisterType<ConversionToBdModel>()
+                .As<IConverterConversion>().InstancePerRequest();
+
+            builder.RegisterType<TransancionToBdModel>()
+                .As<IConverterTransacion>().InstancePerRequest();
+
+            builder.RegisterType<NotNullSpecification>()
+                .As<ISpecification>().InstancePerRequest();
         }
 
-        public static void RegitrarClases(ContainerBuilder builder)
+        public static void RegistrarClases(ContainerBuilder builder)
         {
-            //builder.Register(z => new IBMContext()).
-            //    InstancePerRequest();
+            builder.Register(z => new IBMContext()).
+                InstancePerRequest();
 
             builder.Register(z => new HttpClient()).
                 InstancePerRequest();
@@ -75,7 +92,7 @@ namespace InternationalBusinessMen
 
             RegistrarControllers(builder);
             RegistrarRepos(builder);
-            RegitrarClases(builder);
+            RegistrarClases(builder);
 
             IContainer contenedor = builder.Build();
 

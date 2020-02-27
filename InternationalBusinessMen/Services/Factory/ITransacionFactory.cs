@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InternationalBusinessMen.Models.BDModels;
+using InternationalBusinessMen.Models.WebModels;
 
 namespace InternationalBusinessMen.Services.Factory
 {
-    public interface IAccionFactory<T> where T : class
+    public interface ITransacionFactory
     {
-        IAccion CreateInstance();
+        Task<TransacionModelBD> CreateInstance(TransacionModel transacion);
     }
 }

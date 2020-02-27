@@ -1,6 +1,6 @@
 ﻿namespace InternationalBusinessMen.Models.WebModels
 {
-    public class TransacionModel
+    public class TransacionModel : IModelAccion
     {
         public string sku { get; set; }
         public string amount { get; set; }

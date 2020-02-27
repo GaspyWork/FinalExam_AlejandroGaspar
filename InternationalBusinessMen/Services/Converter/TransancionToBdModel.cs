@@ -1,30 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using InternationalBusinessMen.Models.BDModels;
 using InternationalBusinessMen.Models.WebModels;
+using InternationalBusinessMen.Services.Excepciones;
+using InternationalBusinessMen.Services.Factory;
 
 namespace InternationalBusinessMen.Services.Converter
 {
     public class TransancionToBdModel : IConverterTransacion
     {
-        public List<TransacionModelBD> ConvertTo(List<TransacionModel> lista)
-        {
-            List<TransacionModelBD> listaResult = new List<TransacionModelBD>();
-            TransacionModelBD conversionobj;
+        private ITransacionFactory _transacionfactory;
 
-            foreach (var item in lista)
+        public TransancionToBdModel(ITransacionFactory transacionFactory)
+        {
+            _transacionfactory = transacionFactory;
+        }
+        public async Task<List<TransacionModelBD>> ConvertToBdModel(List<TransacionModel> lista)
+        {
+            try
             {
-                conversionobj = new TransacionModelBD()
+                List<TransacionModelBD> listaResult = new List<TransacionModelBD>();
+
+                foreach (var item in lista)
                 {
-                    sku = item.sku,
-                    amount = Convert.ToDouble(item.amount),
-                    currency = item.currency
-                };
-                listaResult.Add(conversionobj);
+                    listaResult.Add(await _transacionfactory.CreateInstance(item));
+                }
+
+                return listaResult;
             }
-            return listaResult;
+            catch (Exception ex)
+            {
+                throw new ErrorConvertException("No se ha podido convertir de ConversionModel a ConversionModelBD", ex);
+            }
         }
     }
 }

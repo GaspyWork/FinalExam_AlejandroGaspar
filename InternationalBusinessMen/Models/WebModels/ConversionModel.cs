@@ -1,6 +1,6 @@
 ﻿namespace InternationalBusinessMen.Models.WebModels
 {
-    public class ConversionModel
+    public class ConversionModel : IModelAccion
     {
         public string from { get; set; }
         public string to { get; set; }
