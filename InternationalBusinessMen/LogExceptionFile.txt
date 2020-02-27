@@ -1,0 +1,2 @@
+Error: Se produjo una excepción de tipo 'InternationalBusinessMen.Services.Excepciones.ErrorConexionException'. 27/02/2020 0:00:00 
+Error: Error en la transferencia de conversiones 27/02/2020 0:00:00 
